@@ -2,44 +2,54 @@ import Pokemon from "components/Pokemon/Pokemon"
 import styles from "./Home.module.css"
 import { useEffect, useState } from "react";
 
+type PokemonList = {
+   pokemonList: Pokemon[]
+   filterValue: string
+}
+
 type Pokemon = {
    name: string
    id: number
-   height: number
    weight: number
+   height: number
 }
 
 function filterPokemonsByName(pokemons: Pokemon[], filteredName: string) {
    return pokemons.filter(({ name }) => name.toLowerCase().includes(filteredName))
 }
 
+const fetchPokemons = async (url: string) => {
+   return fetch(url, { headers: { accept: "application/json" } })
+      .then(response => response.json())
+      .then(pokemonData => pokemonData);
+   //    const response = await fetch(url, { headers: { accept: "application/json" } })
+   //    const data = await response.json()
+}
+
 export const Home = () => {
    const [pokemonList, setPokemonList] = useState([])
-
-   const fetchPokemons = () => {
-      return fetch('http://localhost:8000/pokemons', { headers: { accept: "application/json" } })
-         .then(response => response.json())
-         .then(pokemonData => pokemonData);
-   }
-
-   useEffect(() => {
-      fetchPokemons().then((data) => setPokemonList(data))
-   }, [])
-
    const [filterValue, setFilterValue] = useState('');
 
-   const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-      setFilterValue(event.target.value.toLowerCase());
-   };
+   useEffect(() => {
+      fetchPokemons('http://localhost:8000/pokemons').then((data) => setPokemonList(data))
+   }, [])
 
    return (
       <div className={styles.intro}>
-         <div>Bienvenue sur ton futur pokédex !</div>
-         <div>Tu vas pouvoir apprendre tout ce qu'il faut sur React et attraper des pokemons !</div>
-         <input className={styles.input} onChange={onInputChange} value={filterValue} />
+         <h1>Pokedex !</h1>
+         <input className={styles.input} placeholder="Search" onChange={(e) => setFilterValue(e.target.value.toLowerCase())} value={filterValue} />
+         <PokemonList pokemonList={pokemonList} filterValue={filterValue} />
+      </div>
+   )
+
+}
+
+const PokemonList = ({ pokemonList, filterValue }: PokemonList) => {
+   return (
+      <div className={styles.cardList}>
          {
-            filterPokemonsByName(pokemonList, filterValue).map(({ name, id }) => {
-               return <Pokemon name={name} id={id} key={id} />
+            filterPokemonsByName(pokemonList, filterValue).map(({ name, id, weight, height }) => {
+               return <Pokemon name={name} id={id} key={id} weight={weight} height={height} />
             })
          }
       </div>
