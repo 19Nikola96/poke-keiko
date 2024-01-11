@@ -1,11 +1,10 @@
-export type PokemonType = {
+export type PokemonInfo = {
    name: string
    id: number
    weight: number
    height: number
 }
 
-export type PokemonListType = {
-   pokemonList: PokemonType[]
+export type PokemonDisplay = {
    filterValue: string
 }

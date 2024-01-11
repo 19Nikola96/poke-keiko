@@ -1,11 +1,9 @@
-import React from 'react'
-
-const Error = ({ error }: { error: string }) => {
+const ErrorCard = ({ errorMessage }: { errorMessage: string }) => {
    return (
       <>
-         {error && <p>{error}</p>}
+         <p>{errorMessage}</p>
       </>
    )
 }
 
-export default Error
+export default ErrorCard

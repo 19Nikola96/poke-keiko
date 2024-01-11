@@ -2,11 +2,11 @@ import React from 'react'
 import styles from "./Loader.module.css"
 import LoaderLogo from "./loader.svg"
 
-type PokeLoader = {
+type PokeLoaderProps = {
    isLoading: boolean
 }
 
-const Loader = ({ isLoading }: PokeLoader) => {
+const Loader = ({ isLoading }: PokeLoaderProps) => {
    return (
       <div className={styles.loader}>
          {
