@@ -8,10 +8,11 @@
    flex-direction: column;
    justify-content: space-between;
    align-items: center;
+   cursor: pointer;
+   text-decoration: none;
 }
 
 .card img {
-   width: 100px;
    transition: .3s;
    z-index: 1222;
 }

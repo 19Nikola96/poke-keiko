@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react'
-import Pokemon from 'components/Pokemon/Pokemon'
+import { useEffect, useState } from 'react'
+import Pokemon from 'components/Pokemon/PokemonCard/PokemonCard'
 import styles from "./PokemonList.module.css"
-import { PokemonInfo, PokemonDisplay } from 'components/PokemonList/domain/business_objects/pokemon.type'
 import Loader from 'components/Loader/Loader'
-import { fetchPokemons } from './data_integration/fetchPokemons'
 import ErrorCard from 'components/Error/Error'
+import { PokemonDisplay, PokemonProps } from '../domain/buisness_objetcs/pokemon.type'
+import { fetchPokemons } from '../data_integration/fetchPokemons'
 
-function filterPokemonsByName(pokemons: PokemonInfo[], filteredName: string) {
+function filterPokemonsByName(pokemons: PokemonProps[], filteredName: string) {
    return pokemons.filter(({ name }) => name.toLowerCase().includes(filteredName))
 }
 

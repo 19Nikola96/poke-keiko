@@ -1,4 +1,4 @@
-export type PokemonInfo = {
+export type PokemonProps = {
    name: string
    id: number
    weight: number

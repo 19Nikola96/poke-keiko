@@ -4,4 +4,9 @@
    flex-wrap: wrap;
    justify-content: center;
    gap: 10px;
-} 
+}
+
+.pokemonList a {
+   text-decoration: none;
+   color: black;
+}
