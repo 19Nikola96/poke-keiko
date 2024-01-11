@@ -1,6 +1,6 @@
 import styles from "./Home.module.css"
 import { useState } from "react"
-import PokemonList from "components/PokemonList/PokemonList"
+import PokemonList from "components/Pokemon/PokemonList/PokemonList"
 
 export const Home = () => {
   const [filterValue, setFilterValue] = useState("")
