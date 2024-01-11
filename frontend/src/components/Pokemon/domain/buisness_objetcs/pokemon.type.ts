@@ -7,4 +7,5 @@ export type PokemonProps = {
 
 export type PokemonDisplay = {
    filterValue: string
+   page: number
 }

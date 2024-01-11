@@ -10,13 +10,13 @@ function filterPokemonsByName(pokemons: PokemonProps[], filteredName: string) {
    return pokemons.filter(({ name }) => name.toLowerCase().includes(filteredName))
 }
 
-const PokemonList = ({ filterValue }: PokemonDisplay) => {
+const PokemonList = ({ filterValue, page }: PokemonDisplay) => {
    const [pokemonList, setPokemonList] = useState([])
    const [isLoading, setIsLoading] = useState(true)
    const [errorMessage, setErrorMessage] = useState('')
 
    const updatePokemonList = async () => {
-      const pokemonList = await fetchPokemons("http://localhost:8000/pokemons")
+      const pokemonList = await fetchPokemons(`http://localhost:8000/pokemons?page=${page}`)
       setIsLoading(false)
       if (pokemonList.statusCode && pokemonList.statusCode !== 200) {
          setErrorMessage(pokemonList.message)
