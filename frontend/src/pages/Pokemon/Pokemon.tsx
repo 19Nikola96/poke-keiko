@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom'
 import styles from './Pokemon.module.css'
 import PokemonDetail from 'components/Pokemon/PokemonDetail/PokemonDetail'
 
-const PokemonDetails = () => {
+const Pokemon = () => {
    const { id } = useParams()
 
    return (
@@ -12,4 +12,4 @@ const PokemonDetails = () => {
    )
 }
 
-export default PokemonDetails
+export default Pokemon
