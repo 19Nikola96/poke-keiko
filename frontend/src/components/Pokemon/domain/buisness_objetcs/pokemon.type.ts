@@ -1,4 +1,4 @@
-export type PokemonProps = {
+export type PokemonInfo = {
    name: string
    id: number
    weight: number
@@ -7,4 +7,5 @@ export type PokemonProps = {
 
 export type PokemonDisplay = {
    filterValue: string
+   page: number
 }
