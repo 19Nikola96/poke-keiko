@@ -3,10 +3,11 @@ import Loader from 'components/Loader/Loader'
 import ErrorCard from 'components/Error/Error'
 import styles from './PokemonDetail.module.css'
 import { fetchPokemons } from '../data_integration/fetchPokemons'
-import { PokemonProps } from '../domain/buisness_objetcs/pokemon.type'
+import { PokemonInfo } from '../domain/buisness_objetcs/pokemon.type'
+import { POKEMON_IMAGE_BASE_URL, POKEMON_SINGLE_ROUTE } from '../data_integration/constants'
 
 const PokemonDetail = ({ pokeId }: { pokeId: string | undefined }) => {
-   const [pokemonDetails, setPokemonDetails] = useState<PokemonProps>({
+   const [pokemonDetails, setPokemonDetails] = useState<PokemonInfo>({
       name: '',
       id: 0,
       weight: 0,
@@ -16,7 +17,7 @@ const PokemonDetail = ({ pokeId }: { pokeId: string | undefined }) => {
    const [errorMessage, setErrorMessage] = useState('')
 
    const updatePokemonDetails = async () => {
-      const pokemonDetails = await fetchPokemons(`http://localhost:8000/pokemon/${pokeId}`)
+      const pokemonDetails = await fetchPokemons(POKEMON_SINGLE_ROUTE + pokeId)
       setIsLoading(false)
       if (pokemonDetails.statusCode && pokemonDetails.statusCode !== 200) {
          setErrorMessage(pokemonDetails.message)
@@ -36,12 +37,12 @@ const PokemonDetail = ({ pokeId }: { pokeId: string | undefined }) => {
             <div className={styles.pokemonDetail}>
                <h2>{pokemonDetails.name}</h2>
                <div>
-                  <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/${pokeId}.gif`} alt={`pokemon_front_${pokeId}`} />
-                  <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/back/${pokeId}.gif`} alt={`pokemon_back_${pokeId}`} />
+                  <img src={`${POKEMON_IMAGE_BASE_URL}/other/showdown/${pokeId}.gif`} alt={`pokemon_front_${pokeId}`} />
+                  <img src={`${POKEMON_IMAGE_BASE_URL}/other/showdown/back/${pokeId}.gif`} alt={`pokemon_back_${pokeId}`} />
                </div>
                <div>
-                  <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/shiny/${pokeId}.gif`} alt={`pokemon_front_shiny${pokeId}`} />
-                  <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/back/shiny/${pokeId}.gif`} alt={`pokemon_back_shiny${pokeId}`} />
+                  <img src={`${POKEMON_IMAGE_BASE_URL}/other/showdown/shiny/${pokeId}.gif`} alt={`pokemon_front_shiny${pokeId}`} />
+                  <img src={`${POKEMON_IMAGE_BASE_URL}/other/showdown/back/shiny/${pokeId}.gif`} alt={`pokemon_back_shiny${pokeId}`} />
                </div>
                <div className={styles.detail}>
                   <p>Id: {pokemonDetails.id}</p>

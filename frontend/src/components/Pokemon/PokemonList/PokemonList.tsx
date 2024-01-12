@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react'
-import Pokemon from 'components/Pokemon/PokemonCard/PokemonCard'
+import PokemonCard from 'components/Pokemon/PokemonCard/PokemonCard'
 import styles from "./PokemonList.module.css"
 import Loader from 'components/Loader/Loader'
 import ErrorCard from 'components/Error/Error'
-import { PokemonDisplay, PokemonProps } from '../domain/buisness_objetcs/pokemon.type'
+import { PokemonDisplay, PokemonInfo } from '../domain/buisness_objetcs/pokemon.type'
 import { fetchPokemons } from '../data_integration/fetchPokemons'
+import { POKEMON_LIST_ROUTE } from '../data_integration/constants'
 
-function filterPokemonsByName(pokemons: PokemonProps[], filteredName: string) {
+function filterPokemonsByName(pokemons: PokemonInfo[], filteredName: string) {
    return pokemons.filter(({ name }) => name.toLowerCase().includes(filteredName))
 }
 
@@ -16,7 +17,7 @@ const PokemonList = ({ filterValue, page }: PokemonDisplay) => {
    const [errorMessage, setErrorMessage] = useState('')
 
    const updatePokemonList = async () => {
-      const pokemonList = await fetchPokemons(`http://localhost:8000/pokemons?page=${page}`)
+      const pokemonList = await fetchPokemons(`${POKEMON_LIST_ROUTE}?page=${page}`)
       setIsLoading(false)
       if (pokemonList.statusCode && pokemonList.statusCode !== 200) {
          setErrorMessage(pokemonList.message)
@@ -27,7 +28,7 @@ const PokemonList = ({ filterValue, page }: PokemonDisplay) => {
 
    useEffect(() => {
       updatePokemonList()
-   }, [])
+   }, [page])
 
    const filteredPokemons = filterPokemonsByName(pokemonList, filterValue);
 
@@ -39,7 +40,7 @@ const PokemonList = ({ filterValue, page }: PokemonDisplay) => {
          <Loader isLoading={isLoading} />
          <div className={styles.pokemonList}>
             {
-               filteredPokemons.map(({ name, id, weight, height }) => <Pokemon name={name} id={id} key={id} weight={weight} height={height} />)
+               filteredPokemons.map(({ name, id, weight, height }) => <PokemonCard name={name} id={id} key={id} weight={weight} height={height} />)
             }
          </div>
          <ErrorCard errorMessage={errorMessage} />
