@@ -1,21 +1,35 @@
 import styles from './PokemonCard.module.css'
 import { Link } from 'react-router-dom'
-import { PokemonInfo } from '../domain/buisness_objetcs/pokemon.type'
 import { POKEMON_IMAGE_BASE_URL } from '../data_integration/constants'
+import { AnimateFadeIn } from 'components/Animate/Animate'
 
-const PokemonCard = ({ name, id, weight, height }: PokemonInfo) => {
+type PokemonCardProps = {
+   name: string
+   id: number
+   weight: number
+   height: number
+   imgLink: {
+      route: string
+      type: string
+   }
+   index: number
+}
+
+const PokemonCard = ({ name, id, weight, height, imgLink, index }: PokemonCardProps) => {
    return (
-      <Link to={`/pokemon/${id}`}>
-         <div className={styles.card}>
-            <h3>{name}</h3>
-            <img src={`${POKEMON_IMAGE_BASE_URL}/other/showdown/${id}.gif`} alt={`pokemon_${id}`} />
-            <div>
-               <p>Id: {id}</p>
-               <p>Weight: {weight / 10} kg</p>
-               <p>Height: {height * 10} cm</p>
+      <AnimateFadeIn delay={index * 50}>
+         <Link to={`/pokemon/${id}/${imgLink.type}`}>
+            <div className={styles.card}>
+               <h3>{name}</h3>
+               <img src={`${POKEMON_IMAGE_BASE_URL}${imgLink.route}${id}.${imgLink.type}`} alt={`pokemon_${id}`} />
+               <div>
+                  <p>Id: {id}</p>
+                  <p>Weight: {weight / 10} kg</p>
+                  <p>Height: {height * 10} cm</p>
+               </div>
             </div>
-         </div>
-      </Link>
+         </Link>
+      </AnimateFadeIn>
    )
 }
 

@@ -1,0 +1,19 @@
+
+.imgChoice {
+   display: flex;
+   justify-content: center;
+}
+
+.imgChoice label {
+   cursor: pointer;
+   padding: .6rem;
+   border-radius: 10px;
+}
+
+.imgChoice label:hover {
+   background-color: whitesmoke;
+}
+
+.imgChoice input {
+   margin-right: 5px;
+}

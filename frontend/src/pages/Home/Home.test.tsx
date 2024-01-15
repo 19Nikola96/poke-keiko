@@ -5,15 +5,14 @@ import { setupServer } from "msw/node"
 
 const server = setupServer(
   rest.get("http://localhost:8000/pokemons", (req, res, ctx) => {
-    // Respond with a mocked user token that gets persisted
-    // in the `sessionStorage` by the `Login` component.
     return res(
+      ctx.status(200),
       ctx.json([
         { id: 1, name: "bulbasaur", height: 7, weight: 69 },
         { id: 2, name: "ivysaur", height: 10, weight: 130 },
       ]),
     )
-  }),
+  })
 )
 
 describe("Test Fetching pokemon", () => {
@@ -26,13 +25,14 @@ describe("Test Fetching pokemon", () => {
   // Disable API mocking after the tests are done.
   afterAll(() => server.close())
 
+  // Reset any runtime request handlers we may add during the tests.
   it("should display the list of the first 151 pokemons", async () => {
     render(<Home />)
     const bulbasaur = await screen.findByText(/bulbasaur/)
-    const ivysaur = await screen.findByText(/ivysaur/)
-    console.log(screen.debug())
-    expect(ivysaur).toBeInTheDocument()
     expect(bulbasaur).toBeInTheDocument()
+    const ivysaur = await screen.findByText(/ivysaur/)
+    // console.log(screen.debug())
+    expect(ivysaur).toBeInTheDocument()
   })
 })
 

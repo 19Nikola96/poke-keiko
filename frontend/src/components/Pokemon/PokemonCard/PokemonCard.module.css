@@ -10,11 +10,18 @@
    align-items: center;
    cursor: pointer;
    text-decoration: none;
+   transition: .1s;
 }
 
 .card img {
    transition: .3s;
    z-index: 1222;
+   filter: drop-shadow(5px 0px 1px rgba(0, 0, 0, 0.3));
+}
+
+.card:hover {
+   transform: translate(-5px, -5px);
+   box-shadow: 5px 5px 1px rgb(95, 95, 95);
 }
 
 .card:hover img {
