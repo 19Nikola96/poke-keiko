@@ -3,6 +3,8 @@
   align-items: center;
   flex-direction: column;
   padding: 10px;
+  max-width: 1300px;
+  margin: 0 auto;
 }
 
 .input {
@@ -11,23 +13,4 @@
   font-size: 20px;
   border-radius: 25px;
   padding: .5rem 1rem;
-}
-
-.pagination {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.pagination a {
-  text-decoration: none;
-  font-size: 35px;
-  font-weight: bold;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  color: black  ;
 }

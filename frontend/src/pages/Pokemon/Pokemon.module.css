@@ -1,4 +1,24 @@
 .pokemonDetails {
    display: flex;
    justify-content: center;
+   position: relative;
+}
+.pokemonDetails button {
+   border: 0;
+   position: absolute;
+   left: 20%;
+   top: 10px;
+   padding: .3rem 1rem .6rem 1rem;
+   border-radius: 10px;
+   cursor: pointer;
+   transition: all .2s;
+   font-size: 25px;
+}
+
+.pokemonDetails button:hover {
+   background-color: rgb(221, 221, 221);
+}
+
+.pokemonDetails button:active {
+   transform: scale(.8);
 }

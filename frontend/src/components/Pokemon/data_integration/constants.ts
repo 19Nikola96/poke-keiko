@@ -1,4 +1,3 @@
-
 export const BASE_URL = 'http://localhost:8000'
 export const POKEMON_LIST_ROUTE = '/pokemons/'
 export const POKEMON_SINGLE_ROUTE = '/pokemon/'

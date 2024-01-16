@@ -9,9 +9,9 @@ export const App = () => {
     <Root>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Navigate to={`${POKEDEX_PAGE_ROUTE}0`} replace={true} />} />
-          <Route path={`${POKEDEX_PAGE_ROUTE}:page`} element={<Home />} />
-          <Route path={`${POKEMON_SINGLE_ROUTE}:id`} element={<PokemonDetails />} />
+          <Route path="/" element={<Navigate to={`${POKEDEX_PAGE_ROUTE}0/gif`} replace={true} />} />
+          <Route path={`${POKEDEX_PAGE_ROUTE}:page/:imgType`} element={<Home />} />
+          <Route path={`${POKEMON_SINGLE_ROUTE}:id/:imgType`} element={<PokemonDetails />} />
         </Routes>
       </BrowserRouter>
     </Root>
