@@ -9,6 +9,7 @@ import { AnimateTada } from 'components/Animate'
 import { useParams } from "react-router-dom";
 
 const PokemonDetail = ({ pokeId }: { pokeId: string | undefined }) => {
+   // create custom hook
    const [pokemonDetails, setPokemonDetails] = useState<PokemonInfo>({
       name: '',
       id: 0,

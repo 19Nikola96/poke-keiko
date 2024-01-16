@@ -20,6 +20,7 @@ const PokemonList = ({ filterValue, page }: PokemonDisplay) => {
    const { imgType } = useParams()
 
    const updatePokemonList = async () => {
+      setIsLoading(true)
       const pokemonList = await fetchPokemons(`${POKEMON_LIST_ROUTE}?page=${page}`)
       setIsLoading(false)
       if (pokemonList.statusCode && pokemonList.statusCode !== 200) {

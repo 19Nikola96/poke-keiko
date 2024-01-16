@@ -21,7 +21,8 @@
 }
 
 .pagination a:hover {
-   background-color: rgb(250, 250, 250);
+   background-color: rgb(73, 73, 73);
+   color: white;
 }
 
 .pagination a:active {

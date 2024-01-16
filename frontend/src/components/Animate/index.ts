@@ -1,1 +1,2 @@
-export { Animate } from "./Animate"
+export { AnimateTada } from "./Animate"
+export { AnimateWobble } from "./Animate"
